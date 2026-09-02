@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from "react";
 import { Button, Box, Typography } from "@mui/material";
 
-import OldApp from "./ExampleApp";
+// import OldApp from "./ExampleApp";
 import GameApp from "./GameApp";
 
 export interface NavigationButtonsProps {
@@ -55,9 +55,9 @@ const MainApp = (props: {
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({ navigate }) => {
   return (
     <Box sx={{ display: "flex", gap: 2, justifyContent: "center", p: 4 }}>
-      <Button variant="contained" onClick={() => navigate("/example")}>
+      {/* <Button variant="contained" onClick={() => navigate("/example")}>
         Original Example
-      </Button>
+      </Button> */}
       <Button variant="contained" onClick={() => navigate("/game")}>
         Game
       </Button> 
@@ -76,9 +76,9 @@ function FirstApp() {
   let content;
 
   switch (currentPath) {
-    case "/example":
-      content = <OldApp />;
-      break;
+    // case "/example":
+    //   content = <OldApp />;
+    //   break;
     case "/game":
       content = <GameApp />;
       break; 
