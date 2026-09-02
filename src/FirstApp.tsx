@@ -3,9 +3,8 @@
 import React, { useState, useCallback } from "react";
 import { Button, Box, Typography } from "@mui/material";
 
-import PrivacyPolicy from "./components/pages/PrivacyPolicy";
-import TermsOfUse from "./components/pages/TermsOfUse";
-import Disclaimer from "./components/pages/Disclaimer";
+import OldApp from "./ExampleApp";
+import GameApp from "./GameApp";
 
 export interface NavigationButtonsProps {
   navigate: (path: string) => void;
@@ -56,18 +55,16 @@ const MainApp = (props: {
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({ navigate }) => {
   return (
     <Box sx={{ display: "flex", gap: 2, justifyContent: "center", p: 4 }}>
-      <Button variant="contained" onClick={() => navigate("/privacy")}>
-        Privacy Policy
+      <Button variant="contained" onClick={() => navigate("/example")}>
+        Original Example
       </Button>
-      <Button variant="contained" onClick={() => navigate("/terms")}>
-        Terms and Conditions
-      </Button>
-      <Button variant="contained" onClick={() => navigate("/disclaimer")}>
-        Disclaimer
-      </Button>
+      <Button variant="contained" onClick={() => navigate("/game")}>
+        Game
+      </Button> 
     </Box>
   );
 };
+ 
 
 function FirstApp() {
   const [currentPath, setCurrentPath] = useState<string>("/");
@@ -79,15 +76,12 @@ function FirstApp() {
   let content;
 
   switch (currentPath) {
-    case "/privacy":
-      content = <PrivacyPolicy />;
+    case "/example":
+      content = <OldApp />;
       break;
-    case "/terms":
-      content = <TermsOfUse />;
-      break;
-    case "/disclaimer":
-      content = <Disclaimer />;
-      break;
+    case "/game":
+      content = <GameApp />;
+      break; 
     case "/":
     default:
       content = (
