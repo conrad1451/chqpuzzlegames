@@ -3,8 +3,10 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import FirstApp from "./FirstApp";
 
-function App() {
+
+function OldApp() {
   const [count, setCount] = useState(0)
 
   return (
@@ -117,6 +119,12 @@ function App() {
       <section id="spacer"></section>
     </>
   )
+}
+
+function App() {
+  return (
+      <FirstApp />
+  );
 }
 
 export default App
