@@ -2,13 +2,22 @@
 
 import React, { useState, useCallback } from "react";
 import { Button, Box, Typography } from "@mui/material";
-
-// import OldApp from "./ExampleApp";
 import GameApp from "./GameApp";
 
 export interface NavigationButtonsProps {
   navigate: (path: string) => void;
 }
+
+const SimplePage: React.FC<{ title: string; body: string }> = ({ title, body }) => (
+  <Box sx={{ p: 4, maxWidth: 800, mx: "auto", overflowY: "auto", height: "100%" }}>
+    <Typography variant="h4" gutterBottom>
+      {title}
+    </Typography>
+    <Typography variant="body1" color="text.secondary">
+      {body}
+    </Typography>
+  </Box>
+);
 
 const MainApp = (props: {
   currentPath: string;
@@ -20,53 +29,90 @@ const MainApp = (props: {
   return (
     <Box
       sx={{
-        fontFamily: "Inter",
+        fontFamily: "Inter, sans-serif",
         bgcolor: "#f4f7f9",
-        flex: 1,
-        width: "100%",
+        height: "100vh",
+        width: "100vw",
         display: "flex",
         flexDirection: "column",
-        overflow: "auto",
-        justifyContent: "center",
+        overflow: "hidden",
+        boxSizing: "border-box",
       }}
     >
-      <Box sx={{ width: "100%", pt: 4 }}>
+      {/* Top Header: 5vh height */}
+      <Box
+        sx={{
+          height: "5vh",
+          minHeight: "36px",
+          bgcolor: "#fff",
+          borderBottom: "1px solid #e0e0e0",
+          display: "flex",
+          alignItems: "center",
+          px: 2,
+          flexShrink: 0,
+        }}
+      >
         {currentPath !== "/" && (
-          <Button
-            onClick={() => navigate("/")}
-            sx={{ mb: 2, ml: 2 }}
-            variant="text"
-          >
+          <Button onClick={() => navigate("/")} variant="text" size="small">
             ← Back to Home
           </Button>
         )}
+      </Box>
+
+      {/* Main Game Container: Fills 90vh (remaining height) */}
+      <Box
+        sx={{
+          height: "90vh",
+          width: "100%",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         {content}
-        <div id="apitiny-adz-container" style={{ minHeight: "100px" }} />
-        <div className="footer">
-          <Button onClick={() => navigate("/terms")}>Terms of Use</Button>
-          <Button onClick={() => navigate("/privacy")}>Privacy Policy</Button>
-          <Button onClick={() => navigate("/disclaimer")}>Disclaimer</Button>
-        </div>
+      </Box>
+
+      {/* Bottom Footer: 5vh height */}
+      <Box
+        sx={{
+          height: "5vh",
+          minHeight: "36px",
+          width: "100%",
+          bgcolor: "#fff",
+          borderTop: "1px solid #e0e0e0",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          px: 2,
+          flexShrink: 0,
+        }}
+      >
+        <div id="apitiny-adz-container" />
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Button size="small" onClick={() => navigate("/terms")}>
+            Terms of Use
+          </Button>
+          <Button size="small" onClick={() => navigate("/privacy")}>
+            Privacy Policy
+          </Button>
+          <Button size="small" onClick={() => navigate("/disclaimer")}>
+            Disclaimer
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
 };
 
-const NavigationButtons: React.FC<NavigationButtonsProps> = ({ navigate }) => {
-  return (
-    <Box sx={{ display: "flex", gap: 2, justifyContent: "center", p: 4 }}>
-      {/* <Button variant="contained" onClick={() => navigate("/example")}>
-        Original Example
-      </Button> */}
-      <Button variant="contained" onClick={() => navigate("/game")}>
-        Game
-      </Button> 
-    </Box>
-  );
-};
- 
+const NavigationButtons: React.FC<NavigationButtonsProps> = ({ navigate }) => (
+  <Box sx={{ display: "flex", gap: 2, justifyContent: "center", p: 4 }}>
+    <Button variant="contained" size="large" onClick={() => navigate("/game")}>
+      Launch Game
+    </Button>
+  </Box>
+);
 
-function FirstApp() {
+export default function FirstApp() {
   const [currentPath, setCurrentPath] = useState<string>("/");
 
   const navigate = useCallback((path: string) => {
@@ -76,16 +122,30 @@ function FirstApp() {
   let content;
 
   switch (currentPath) {
-    // case "/example":
-    //   content = <OldApp />;
-    //   break;
     case "/game":
       content = <GameApp />;
-      break; 
+      break;
+    case "/terms":
+      content = <SimplePage title="Terms of Use" body="Terms of service details go here." />;
+      break;
+    case "/privacy":
+      content = <SimplePage title="Privacy Policy" body="Privacy policy details go here." />;
+      break;
+    case "/disclaimer":
+      content = <SimplePage title="Disclaimer" body="Disclaimer details go here." />;
+      break;
     case "/":
     default:
       content = (
-        <Box sx={{ p: 4, textAlign: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
           <Typography variant="h3" gutterBottom>
             Welcome
           </Typography>
@@ -103,5 +163,3 @@ function FirstApp() {
     />
   );
 }
-
-export default FirstApp;
