@@ -122,8 +122,11 @@ function OldApp() {
 }
 
 function App() {
+  const myChoice = 1;
+
   return (
-      <FirstApp />
+    myChoice === 1? 
+      <FirstApp/>:<OldApp/>
   );
 }
 
