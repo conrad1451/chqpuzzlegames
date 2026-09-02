@@ -9,11 +9,16 @@ const GameApp = () => {
       {/* <!-- ParkerSyndication — Partner ID: chqpuzzlegames — do not remove partner id from the URL --> */}
       <iframe 
           src="https://parkersyndication.com/p/chqpuzzlegames"
-          style="width:100%;min-height:900px;border:0;border-radius:12px" 
+          style={{
+            width: "100%",
+            minHeight: "900px",
+            border: "0",
+            borderRadius: "12px"
+          }} 
           title="ParkerSyndication Games" 
           loading="lazy" 
           allow="autoplay; clipboard-write" 
-          referrerpolicy="strict-origin-when-cross-origin" 
+          referrerPolicy="strict-origin-when-cross-origin" 
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-downloads">     
       </iframe>
     </div>
