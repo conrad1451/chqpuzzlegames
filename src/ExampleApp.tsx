@@ -3,8 +3,6 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
-import FirstApp from "./FirstApp";
-
 
 function OldApp() {
   const [count, setCount] = useState(0)
@@ -120,14 +118,5 @@ function OldApp() {
     </>
   )
 }
-
-function App() {
-  const myChoice = 1;
-
-  return (
-    myChoice === 1? 
-      <FirstApp/>:<OldApp/>
-  );
-}
-
-export default App
+ 
+export default OldApp
